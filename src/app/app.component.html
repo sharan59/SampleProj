@@ -1,0 +1,59 @@
+<body>
+
+  <div class="container">
+    <h2>User Directory</h2>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" id="one" data-toggle="modal" data-target="#myModal">Add New User</button>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+           
+            <h4 class="modal-title">Add New User</h4>
+          </div>
+          <div class="modal-body">
+            <form #nuser='ngForm' (ngSubmit)=transfer(nuser.value)>
+              <input type="text" class="textbox" placeholder="UserName" name="username" ngModel>
+              <input type="text" class="textbox" placeholder="Address" name="address" ngModel>
+              <input type="text" class="textbox" placeholder="Contact" name="contact" ngModel>
+              <input type="text" class="textbox" placeholder="Email" name="email" ngModel>
+              <input type="submit" id="main" value="AddUser">
+              
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="close" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </body>
+  
+
+  <table>
+    <tr>
+      <th>USERNAME </th>
+      <th>ADDRESS </th>  
+      <th>EMAIL </th>
+      <th>CONTACT </th>
+    </tr>
+    <tr *ngFor="let reg of adata ; let in=index">  
+      <td>{{reg.username}}</td>
+    <td>{{reg.address}}</td>
+    <td>{{reg.email}}</td>
+    <td>{{reg.contact}} <button id="two" (click)='deleteData(reg.username,in)' >Delete</button>
+      <button id="two" (click)='editData(reg,in)' >Edit</button></td> 
+    </tr> 
+    </table>
+
+    <div *ngIf="update" >
+    <input type="text" placeholder="UserName" name="username" [(ngModel)]=datatobeedited.name>
+              <input type="text" placeholder="Address" name="address" [(ngModel)]=datatobeedited.address ngModel>
+              <input type="text" placeholder="Contact" name="contact" [(ngModel)]=datatobeedited.contact ngModel>
+              <input type="text" placeholder="Email" name="email" [(ngModel)]=datatobeedited.email ngModel>
+              <button (click)='saveUpdate(datatobeedited)' >save</button>
+            </div>
